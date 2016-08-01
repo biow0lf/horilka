@@ -11,18 +11,24 @@ module Horilka
       @name ||= command.run(file: file, tag: 'NAME')
     end
 
+    def version
+      @version ||= command.run(file: file, tag: 'VERSION')
+    end
+
+    def release
+      @release ||= command.run(file: file, tag: 'RELEASE')
+    end
+
     def filename
       raise NotImplementedError
     end
 
     def md5
-      # TODO: Digest::MD5.file(file).hexdigest
-      # make it more ruby and testable
-      `md5sum #{ file }`.split.first
+      @md5 ||= Cocaine::CommandLine.new('md5sum', ':file').run(file: file).split.first
     end
 
     def size
-      File.size(file)
+      @size ||= File.size(file)
     end
   end
 end
