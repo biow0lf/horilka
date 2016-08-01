@@ -24,6 +24,17 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Example
+
+```ruby
+file = "/Users/biow0lf/Sisyphus/files/SRPMS/catpkt-1.0-alt5.src.rpm"
+# => "/Users/biow0lf/Sisyphus/files/SRPMS/catpkt-1.0-alt5.src.rpm"
+rpm = Horilka::Base.new(file)
+# => #<Horilka::Base:0x007fd70ae0f1d0 @file="/Users/biow0lf/Sisyphus/files/SRPMS/catpkt-1.0-alt5.src.rpm", @command=#<Cocaine::CommandLine:0x007fd70ae0f0e0 @binary="rpm", @params="-qp --queryformat=%\\{:tag\\} :file", @options={}, @runner=#<Cocaine::CommandLine::ProcessRunner:0x007fd70ae0eca8>, @logger=nil, @swallow_stderr=nil, @expected_outcodes=[0], @environment={}, @runner_options={}>>
+rpm.name
+# => "catpkt"
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
