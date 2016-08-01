@@ -8,19 +8,23 @@ module Horilka
     end
 
     def name
-      @name ||= command.run(file: file, tag: 'NAME')
+      @name ||= command_run('NAME')
     end
 
     def version
-      @version ||= command.run(file: file, tag: 'VERSION')
+      @version ||= command_run('VERSION')
     end
 
     def release
-      @release ||= command.run(file: file, tag: 'RELEASE')
+      @release ||= command_run('RELEASE')
     end
 
     def filename
       raise NotImplementedError
+    end
+
+    def summary
+      # environment
     end
 
     def md5
@@ -29,6 +33,12 @@ module Horilka
 
     def size
       @size ||= File.size(file)
+    end
+
+    private
+
+    def command_run(tag)
+      command.run(file: file, tag: tag)
     end
   end
 end
